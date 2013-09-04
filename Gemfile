@@ -8,6 +8,7 @@ gem 'jbuilder', '~> 1.2'
 gem 'pg'
 gem 'chronic'
 gem 'postmark-rails'
+gem 'rails_12factor', group: :production
 
 group :doc do
   gem 'sdoc', require: false
