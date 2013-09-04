@@ -1,18 +1,30 @@
-class Event
-  include MongoMapper::Document
+class Event < ActiveRecord::Base
+  include HasToken
+  include Sendable
   
-  key :location, String, required: true
-  key :time, Time, required: true
-  key :organizer_name, String, required: true
-  key :organizer_email, String, required: true
+  has_many :invitations
   
-  many :invitations
+  validates_presence_of :location, :time, :organizer_name, :organizer_email, :token
+  validates_uniqueness_of :token
   
-  def time_string=(time_string)
-    self.time = Chronic.parse(time_string)
+  def time_string=(string)
+    self.time = Chronic.parse(string)
   end
   
   def time_string
-    self.time.strftime("%Y-%m-%d %H:%I")
+    self.time.try(:strftime, "%Y-%m-%d %H:%I")
+  end
+  
+  def emails=(emails)
+    self.invitations = emails.map{|email| Invitation.new(email: email)}
+  end
+  
+  def emails
+    invitations.map(&:email)
+  end
+  
+  def deliver!
+    EventMailer.confirmation(self).deliver
+    update_attributes!(sent: true)
   end
 end

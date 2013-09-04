@@ -1,3 +1,17 @@
 .email-list input {
   margin-bottom: 8px;
 }
+
+.list-group-item.rsvp-yes {
+  background: #cfc;
+  color: #292;
+}
+
+.list-group-item.rsvp-no {
+  background: #fdd;
+  color: #944;
+}
+
+.list-group-item.rsvp-pending {
+  color: #999;
+}

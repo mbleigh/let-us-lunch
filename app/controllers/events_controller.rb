@@ -1,9 +1,35 @@
 class EventsController < ApplicationController  
   def new
-    @event = Event.new
+    @event = Event.new(invitations: [Invitation.new(email: 'example@example.com')])
   end
   
   def create
-    @event = Event.new(params[:events])
+    Event.transaction do
+      Invitation.transaction do
+        @event = Event.create!(event_params)
+        emails_param.each{|email| Invitation.create!(event: @event, email: email)}
+      end
+    end
+  rescue ActiveRecord::RecordInvalid
+    flash.now[:alert] = "There was a problem with your data. Please try again."
+    render action: :new
+  end
+  
+  def show
+    @event = Event.find(params[:id])
+  end
+  
+  def confirm
+    @event = Event.find_by_token!(params[:id])
+    @event.update_attributes(confirmed: true)
+    redirect_to @event
+  end
+  
+  def event_params
+    params.require(:event).permit(:location, :time_string, :organizer_name, :organizer_email, :message)
+  end
+  
+  def emails_param
+    params.require(:emails)
   end
 end

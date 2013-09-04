@@ -1,0 +1,13 @@
+<p><b><%= @event.organizer_name %></b> has invited you to lunch:</p>
+
+<% if @event.message? %><p><%= @event.message %></p><% end %>
+
+<ul>
+  <li><b>Where:</b> <%= link_to @event.location, "http://maps.google.com/?q=#{@event.location}", target: "_blank" %></li>
+  <li><b>When:</b> <%= @event.time.strftime "%b %d, %Y at %I:%M" %></li>
+</ul>
+
+<p>Please RSVP by clicking one of the links below:</p>
+
+<%= link_to "Yes, I'll Be There!", accept_invitation_url(@invitation.token), style: "text-align: center; display: block; background: #490; color: white; padding: 10px; text-decoration: none" %>
+<%= link_to "No, I Can't Make It", reject_invitation_url(@invitation.token), style: "text-align: center; display: block; background: #911; color: white; padding: 10px; text-decoration: none" %>

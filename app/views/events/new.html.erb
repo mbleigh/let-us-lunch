@@ -18,13 +18,14 @@
               <div class="form-group">
                 <label class="control-label">When do you want to meet?</label>
                 <div class="controls">
-                  <input type="datetime" class="form-control" placeholder="tomorrow at noon" required>
+                  <%= f.text_field :time_string, class: "form-control", placeholder: "tomorrow at noon", required: true %>
                 </div>
               </div>
               <div class="form-group">
                 <label class="control-label">Who's Invited?</label>
                 <div class="controls email-list">
                   <input ng-repeat="email in emails track by $index" type="email" name="emails[]" class="form-control" placeholder="your.friend@example.com">
+                  
                   <button class="btn btn-block btn-default" ng-click="emails.push('')">
                     <i class="icon-female"></i>&nbsp;Add Another Friend</button>
                 </div>

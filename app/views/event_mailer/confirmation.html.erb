@@ -1,0 +1,10 @@
+<p>We recently received a request to create a lunch meetup on <b>Let Us Lunch</b>. You need to
+  confirm the details before we will send invitations to your invited parties.</p>
+
+<ul>
+  <li><b>Your Name:</b> <%= @event.organizer_name %></li>
+  <li><b>You Invited:</b> <%= @event.emails.join(", ") %></li>
+  <li><b>Your Message:</b> <%= @event.message %></li>
+</ul>
+
+<%= link_to "Confirm Meetup", confirm_event_url(@event.token), style: "text-align: center; display: block; background: #069; color: white; padding: 10px; text-decoration: none" %>

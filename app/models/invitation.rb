@@ -1,7 +1,16 @@
-class Invitation
-  include MongoMapper::EmbeddedDocument
+class Invitation < ActiveRecord::Base
+  include HasToken
+  include Sendable
   
-  token :token, size: 40
-  key :email, String, required: true
-  key :response, String
+  belongs_to :event
+  
+  validates_presence_of :email, :event_id, :token
+  validates_uniqueness_of :token
+  validates_uniqueness_of :email, scope: :event_id
+  
+  def deliver!
+    return false unless event.confirmed?
+    EventMailer.invitation(self).deliver
+    update_attributes!(sent: true)
+  end
 end
