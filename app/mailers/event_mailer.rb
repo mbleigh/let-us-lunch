@@ -1,5 +1,5 @@
 class EventMailer < ActionMailer::Base
-  default from: "let-us-lunch@example.com"
+  default from: "mbleigh@mbleigh.com"
   
   def confirmation(event)
     @event = event
