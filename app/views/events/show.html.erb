@@ -5,9 +5,8 @@
   <div class="list-group">
     <div class="list-group-item"><b>When:</b> <%= @event.time.strftime("%B %d, %Y at %H:%M") %></div>
     <div class="list-group-item"><b>Where:</b> <%= @event.location %> (<%= link_to "map", "//www.google.com/maps?f=l&q=#{@event.location}", target: "_blank" %>)</div>
-  </div>
-  <div class="list-group">
-      <div class='list-group-item rsvp-yes'><%= @event.organizer_email %></div>
+    <% if @event.message? %><div class="list-group-item"><%= @event.message %></div><% end %>
+    <div class='list-group-item rsvp-yes'><%= @event.organizer_email %></div>
     <% @event.invitations.each do |invite| %>
       <div class='list-group-item<%= " rsvp-#{invite.response || 'pending'}" %>'><%= invite.email %></div>
     <% end %>

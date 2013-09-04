@@ -38,6 +38,7 @@
       </div>
     </div>
     <div class="container">
+      <% if flash[:alert] %><div class="alert alert-danger"><%=raw flash[:alert] %></div><% end %>
       <%= yield %>
     </div>
     

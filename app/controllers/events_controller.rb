@@ -6,12 +6,13 @@ class EventsController < ApplicationController
   def create
     Event.transaction do
       Invitation.transaction do
-        @event = Event.create!(event_params)
-        emails_param.each{|email| Invitation.create!(event: @event, email: email)}
+        @event = Event.new(event_params)
+        @event.save!
+        emails_param.reject(&:blank?).each{|email| Invitation.create!(event: @event, email: email)}
       end
     end
-  rescue ActiveRecord::RecordInvalid
-    flash.now[:alert] = "There was a problem with your data. Please try again."
+  rescue ActiveRecord::RecordInvalid => e
+    flash.now[:alert] = "Error: #{e.record.errors.full_messages.join(", ")}"
     render action: :new
   end
   
