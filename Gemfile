@@ -7,6 +7,7 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'jbuilder', '~> 1.2'
 gem 'pg'
 gem 'chronic'
+gem 'postmark-rails'
 
 group :doc do
   gem 'sdoc', require: false
