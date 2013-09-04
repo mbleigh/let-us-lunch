@@ -11,3 +11,7 @@
  *= require_self
  *= require_tree .
  */
+
+.navbar-nav .popover {
+  width: 300px;
+}

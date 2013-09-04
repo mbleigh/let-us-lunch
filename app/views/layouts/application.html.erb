@@ -23,15 +23,15 @@
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
             <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
           </button>
-          <a href="#" class="navbar-brand">Let Us Lunch</a>
+          <a href="/" class="navbar-brand">Let Us Lunch</a>
         </div>
         <div class="collapse navbar-collapse" style>
           <ul class="nav navbar-nav navbar-right">
-            <li class="active">
-              <a href="#">New Event</a>
+            <li>
+              <a href="/">New Event</a>
             </li>
             <li>
-              <a href="#">About</a>
+              <a href="#about" data-toggle="modal">About</a>
             </li>
           </ul>
         </div>
@@ -40,5 +40,19 @@
     <div class="container">
       <%= yield %>
     </div>
+    
+    <div class="modal fade" id="about">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title">About Let Us Lunch</h4>
+          </div>
+          <div class="modal-body">
+            <p>Let Us Lunch was created by Michael Bleigh for a CloudSpokes competition.</p>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
   </body>
 </html>
