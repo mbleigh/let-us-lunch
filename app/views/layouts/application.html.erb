@@ -1,0 +1,44 @@
+<!doctype html>
+
+<html ng-app="lunchApp">
+  
+  <head>
+    <title>Let Us Lunch</title>
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="//djyhxgczejc94.cloudfront.net/frameworks/bootstrap/3.0.0/themes/white-plum/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css">
+    <%= stylesheet_link_tag    "application", media: "all" %>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script type="text/javascript" src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular.min.js"></script>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
+  </head>
+  
+  <body>
+    <div class="navbar navbar-static-top navbar-inverse">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+          </button>
+          <a href="#" class="navbar-brand">Let Us Lunch</a>
+        </div>
+        <div class="collapse navbar-collapse" style>
+          <ul class="nav navbar-nav navbar-right">
+            <li class="active">
+              <a href="#">New Event</a>
+            </li>
+            <li>
+              <a href="#">About</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <%= yield %>
+    </div>
+  </body>
+</html>
