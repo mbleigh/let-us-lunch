@@ -6,7 +6,6 @@
     <div class="list-group-item"><b>When:</b> <%= @event.time.strftime("%B %d, %Y at %H:%M") %></div>
     <div class="list-group-item"><b>Where:</b> <%= @event.location %> (<%= link_to "map", "//www.google.com/maps?f=l&q=#{@event.location}", target: "_blank" %>)</div>
   </div>
-  <iframe width="100%" height="300" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="//www.google.com/maps?output=embed&q=<%= @event.location %>"></iframe>
   <div class="list-group">
       <div class='list-group-item rsvp-yes'><%= @event.organizer_email %></div>
     <% @event.invitations.each do |invite| %>

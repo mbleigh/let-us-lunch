@@ -22,6 +22,7 @@ class EventsController < ApplicationController
   def confirm
     @event = Event.find_by_token!(params[:id])
     @event.update_attributes(confirmed: true)
+    @event.invitations.each(&:save)
     redirect_to @event
   end
   
